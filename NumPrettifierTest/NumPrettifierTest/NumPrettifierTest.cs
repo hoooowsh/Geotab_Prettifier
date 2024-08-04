@@ -1,4 +1,5 @@
 using NumPrettifierApp.Prettifier;
+using Moq;
 
 namespace NumPrettifierTest;
 
@@ -44,5 +45,20 @@ public class NumPrettifierTest
     {
         NumPrettifier prettifier = new NumPrettifier();
         Assert.Equal("1.9T", prettifier.Prettify(1888777666555.43124m, RoundingMethod.RoundNearest));
+    }
+
+    [Fact(DisplayName = "Should prettify number 532 to 532")]
+    public void TestPrettify_SmallNum()
+    {
+        NumPrettifier prettifier = new NumPrettifier();
+        Assert.Equal("532", prettifier.Prettify(532, RoundingMethod.RoundNearest));
+    }
+
+    [Fact(DisplayName = "Should catch exp")]
+    public void TestPrettify_Exp()
+    {
+        NumPrettifier prettifier = new NumPrettifier();
+        var result = prettifier.Prettify(1_000_000, (RoundingMethod)999);
+        Assert.Equal("Invalid rounding method", result);
     }
 }

@@ -7,16 +7,16 @@ public enum RoundingMethod
     RoundNearest
 }
 
-public interface NumRoundBase
+public interface INumRound
 {
     string Round(decimal num, RoundingMethod method);
 }
 
-public class NumRound : NumRoundBase
+public class NumRound : INumRound
 {
     public string Round(decimal num, RoundingMethod method)
     {
-        Console.WriteLine(num);
+        // Round up or down or closest
         switch (method)
         {
             case RoundingMethod.RoundUp:
@@ -26,7 +26,7 @@ public class NumRound : NumRoundBase
             case RoundingMethod.RoundNearest:
                 return Math.Round(num, 1).ToString("0.#");
             default:
-                throw new ArgumentOutOfRangeException(nameof(method));
+                throw new ArgumentOutOfRangeException(nameof(method), "Invalid rounding method");
         }
     }
 }

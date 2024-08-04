@@ -1,11 +1,11 @@
 namespace NumPrettifierApp.Prettifier;
 
-public interface NumPrettifierBase
+public interface INumPrettifier
 {
     string Prettify(decimal num, RoundingMethod method);
 }
 
-public class NumPrettifier : NumPrettifierBase
+public class NumPrettifier : INumPrettifier
 {
     // Constants
     private const decimal Million = 1_000_000;
