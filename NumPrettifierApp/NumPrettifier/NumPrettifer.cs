@@ -24,7 +24,7 @@ public class NumPrettifier : INumPrettifier
         try
         {
             // Different cases
-            switch (num)
+            switch (Math.Abs(num))
             {
                 case >= Trillion:
                     return _numRound.Round(num / Trillion, roundingMethod) + "T";
