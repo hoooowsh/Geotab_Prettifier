@@ -5,6 +5,55 @@ namespace NumPrettifierTest;
 
 public class NumPrettifierTest
 {
+    // Mock<NumRound> _mockNumRound;
+    // public NumPrettifierTest()
+    // {
+    //     _mockNumRound = new Mock<NumRound>();
+    // }
+
+    [Fact(DisplayName = "Should prettify number 10000 to 1W")]
+    public void TestPrettify_Wan_1W()
+    {
+        NumPrettifier prettifier = new NumPrettifier();
+        Assert.Equal("1W", prettifier.Prettify(10000, RoundingMethod.RoundNearest, true));
+    }
+
+    [Fact(DisplayName = "Should prettify number 100000000 to 1O")]
+    public void TestPrettify_O_1O()
+    {
+        NumPrettifier prettifier = new NumPrettifier();
+        Assert.Equal("1O", prettifier.Prettify(100000000, RoundingMethod.RoundNearest, true));
+    }
+
+    [Fact(DisplayName = "Should prettify number 1000000000000 to 1O")]
+    public void TestPrettify_Chou_1C()
+    {
+        NumPrettifier prettifier = new NumPrettifier();
+        Assert.Equal("1C", prettifier.Prettify(1000000000000, RoundingMethod.RoundNearest, true));
+    }
+
+
+    [Fact(DisplayName = "Should prettify number 1000000000000000 to 1Q")]
+    public void TestPrettify_QuaTrillion_1Q()
+    {
+        NumPrettifier prettifier = new NumPrettifier();
+        Assert.Equal("1Q", prettifier.Prettify(1000000000000000, RoundingMethod.RoundNearest));
+    }
+
+    [Fact(DisplayName = "Should prettify number 1230000000000000 to 1.2Q")]
+    public void TestPrettify_QuaTrillion_DecimalQ()
+    {
+        NumPrettifier prettifier = new NumPrettifier();
+        Assert.Equal("1.2Q", prettifier.Prettify(1230000000000000, RoundingMethod.RoundNearest));
+    }
+
+    [Fact(DisplayName = "Should prettify number -1230000000000000 to -1.2Q")]
+    public void TestPrettify_QuaTrillion_NegativeQ()
+    {
+        NumPrettifier prettifier = new NumPrettifier();
+        Assert.Equal("-1.2Q", prettifier.Prettify(-1230000000000000, RoundingMethod.RoundNearest));
+    }
+
     [Fact(DisplayName = "Should prettify number 1000000 to 1M")]
     public void TestPrettify_Million_1M()
     {
